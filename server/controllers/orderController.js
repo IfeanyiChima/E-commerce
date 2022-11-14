@@ -31,15 +31,19 @@ const createOrder = async (req, res) => {
 
         // find the product
         const product = await Product.findById({ _id: productId });
+        console.log(product._id)
         if (!product) return res.status(400).json({ "message": "Product not found" });
 
         // create order
         const order = await Order.create({
             name, price, quantity, user: req.id, pid: productId
         })
+        console.log(order.pid)
+
+
 
         // make sure the order matches the product id
-        if (order.pid.toString() !== product.id) return res.status(401).json({ "message": "Not the same product" });
+        if (order.pid.toString() !== product.id.toString()) return res.status(401).json({ "message": "Not the same product" });
 
         // save transaction history with time stamp
         let timeAgo = "";
