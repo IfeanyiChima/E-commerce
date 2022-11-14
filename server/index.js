@@ -40,9 +40,10 @@ app.use(cookieParser());
 app.use("/register", require("./routes/register"));
 app.use("/login", require("./routes/login"));
 app.use("/logout", require("./routes/logout"));
-app.use("/products", require("./routes/api/products"));
 app.use(verifyJWT);
+app.use("/products", require("./routes/api/products"));
 app.use("/history", require("./routes/api/transaction"));
+app.use("/order", require("./routes/api/order"));
 app.use("/users", userRoutes);
 
 
